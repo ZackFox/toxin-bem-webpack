@@ -1,0 +1,28 @@
+$main: rgb(31, 32, 65, 1);
+
+$m75: rgb(31, 32, 65, 0.75);
+$m50: rgb(31, 32, 65, 0.5);
+$m25: rgb(31, 32, 65, 0.25);
+
+$lite: rgba(31, 32, 65, 0.05);
+
+$accent1: #bc9cff;
+$accent2: #6fcf97;
+
+$grad1: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+$grad2: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+
+$font-text: "Montserrat", sans-serif;
+$font-heading: "Open Sans", sans-serif;
+
+$container-size: 1190px;
+
+$size-xxl: 2260px;
+$size-xl: 1440px;
+$size-lg: 1220px;
+$size-md: 992px;
+$size-sm: 768px;
+$size-xs: 320px;
+
+$grid-columns: 12;
+$grid-gutter-width: 30px;

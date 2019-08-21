@@ -1,0 +1,102 @@
+@import "vars";
+@import "libs";
+@import "fonts";
+
+html {
+  font-size: 14px;
+}
+
+body {
+  position: relative;
+  font-family: $text;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: $m75;
+}
+
+a {
+  color: $text;
+  &:hover {
+    color: $lite;
+    text-decoration: underline;
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  font-style: normal;
+  font-weight: bold;
+  color: $main;
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+h2 {
+  font-size: 19px;
+  line-height: 24px;
+}
+
+h3 {
+  font-family: $font-text;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.img-100 {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.icon {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  font-size: 18px;
+  fill: $accent;
+  vertical-align: middle;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: $container-size;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+// @import "../blocks/section/section";
