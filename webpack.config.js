@@ -1,5 +1,5 @@
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
 // const Webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
@@ -120,15 +120,20 @@ const config = {
     ],
   },
   plugins: [
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: "src/img/",
-    //     to: "img/",
-    //   },
-    // ]),
+    new CopyWebpackPlugin([
+      {
+        from: "src/img/",
+        to: "img/",
+      },
+    ]),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "src/pages/index.pug",
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      filename: "uikit.html",
+      template: "src/pages/uikit.pug",
       inject: false,
     }),
     new MiniCssExtractPlugin({
