@@ -1,0 +1,14 @@
+mixin quantityDropdown(options)
+  <div class="iqdropdown #{attributes.class}" style="width: 300px;" >
+    <p class="iqdropdown-selection" ></p>
+    <div class="iqdropdown-menu">
+      each item in options.items
+        - var min = item.min ? item.min : 0;
+        - var max = item.max ? item.max : Infinity;
+        <div class="iqdropdown-menu-option" data-id="#{item.id}" data-mincount="#{min}" data-maxcount="#{max}">
+          <div class="iqdropdown-content">
+            <h3 class="iqdropdown-item">#{item.label}</h3>          
+          </div>          
+        </div>            
+    </div>
+  </div>
