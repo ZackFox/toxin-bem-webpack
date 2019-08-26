@@ -1,4 +1,4 @@
-// const Webpack = require("webpack");
+const Webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -132,12 +132,21 @@ const config = {
       inject: false,
     }),
     new HtmlWebpackPlugin({
-      filename: "uikit.html",
-      template: "src/pages/uikit.pug",
+      filename: "ui-kit.html",
+      template: "src/pages/ui-kit.pug",
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      filename: "home.html",
+      template: "src/pages/home.pug",
       inject: false,
     }),
     new MiniCssExtractPlugin({
       filename: "css/styles.css",
+    }),
+    new Webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
     }),
   ],
 };
