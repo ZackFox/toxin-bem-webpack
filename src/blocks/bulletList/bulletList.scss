@@ -1,0 +1,15 @@
+.bullet-list__item {
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: $m25;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    margin-top: -5px;
+    border-radius: 10px;
+  }
+}
