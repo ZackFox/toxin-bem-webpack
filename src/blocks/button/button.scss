@@ -1,7 +1,7 @@
 .button {
   position: relative;
   background: $grad1;
-  padding: 12px 18px;
+  padding: 10px 20px;
   color: #fff;
   font-family: $font-text;
   font-size: 11px;
@@ -11,6 +11,7 @@
   border-radius: 22px;
   overflow: hidden;
   transition: opacity 0.4s;
+  letter-spacing: 0.7px;
   border: none;
   position: relative;
   z-index: 1;
