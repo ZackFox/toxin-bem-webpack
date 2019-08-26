@@ -38,46 +38,45 @@
       }
 
       function setItemSettings(id, $item) {
-        const minCount = Number($item.data("mincount"));
-        const maxCount = Number($item.data("maxcount"));
+        const min = Number($item.data("mincount"));
+        const max = Number($item.data("maxcount"));
+        const counter = Number($item.find(".iqdropdown-counter").text());
 
-        settings.items[id] = {
-          minCount: Number.isNaN(Number(minCount)) ? 0 : minCount,
-          maxCount: Number.isNaN(Number(maxCount)) ? Infinity : maxCount,
-        };
+        const minCount = Number.isNaN(min) ? 0 : min;
+        const maxCount = Number.isNaN(max) ? Infinity : max;
+        const value = !Number.isNaN(counter) && counter >= minCount ? counter : minCount;
 
-        itemCount[id] = settings.items[id].minCount;
+        settings.items[id] = { minCount, maxCount, value };
+        itemCount[id] = value;
         totalItems += itemCount[id];
       }
 
-      function addControls(id, $item, items) {
-        const $controls = $("<div />").addClass(settings.controls.controlsCls);
+      function addControls(id, $item) {
+        const $counter = $item.find(".iqdropdown-counter");
+        $counter
+          .addClass(settings.controls.counterCls)
+          .text(itemCount[id])
+          .wrap(`<div class="${settings.controls.controlsCls}">`);
+
+        const $controls = $counter.parent();
+
         const $decrementButton = $(`
           <button class="button-decrement">
             <i class="icon-decrement"></i>
           </button>
         `);
+
         const $incrementButton = $(`
           <button class="button-increment">
             <i class="icon-decrement icon-increment"></i>
           </button>
         `);
 
-        const $counter = $(`<span>${items[id].minCount}</span>`).addClass(
-          settings.controls.counterCls,
-        );
-
-        $item.children("div").addClass(settings.controls.displayCls);
-        $controls.append($decrementButton, $counter, $incrementButton);
-
-        if (settings.controls.position === "right") {
-          $item.append($controls);
-        } else {
-          $item.prepend($controls);
-        }
+        $controls.prepend($decrementButton);
+        $controls.append($incrementButton);
 
         $decrementButton.click(event => {
-          const { items, minItems, plurals, beforeDecrement, onChange } = settings;
+          const { items, minItems, beforeDecrement } = settings;
           const allowClick = beforeDecrement(id, itemCount);
           const targetOption = event.currentTarget.closest(".iqdropdown-menu-option");
 
@@ -94,7 +93,7 @@
         });
 
         $incrementButton.click(event => {
-          const { items, maxItems, plurals, beforeIncrement, onChange } = settings;
+          const { items, maxItems, beforeIncrement } = settings;
           const allowClick = beforeIncrement(id, itemCount);
           const targetOption = event.currentTarget.closest(".iqdropdown-menu-option");
 
@@ -103,7 +102,6 @@
             totalItems += 1;
             $counter.html(itemCount[id]);
             targetOption.dataset.count = itemCount[id];
-
             updateSelectionText();
           }
 
@@ -111,7 +109,6 @@
         });
 
         $item.click(event => event.stopPropagation());
-
         return $item;
       }
 
@@ -124,7 +121,7 @@
         const id = $item.data("id");
 
         setItemSettings(id, $item);
-        addControls(id, $item, settings.items);
+        addControls(id, $item);
       });
 
       updateSelectionText();
