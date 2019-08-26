@@ -1,8 +1,8 @@
-$main: rgb(31, 32, 65, 1);
+$main: rgba(31, 32, 65, 1);
 
-$m75: rgb(31, 32, 65, 0.75);
-$m50: rgb(31, 32, 65, 0.5);
-$m25: rgb(31, 32, 65, 0.25);
+$m75: rgba(31, 32, 65, 0.75);
+$m50: rgba(31, 32, 65, 0.5);
+$m25: rgba(31, 32, 65, 0.25);
 
 $lite: rgba(31, 32, 65, 0.05);
 
@@ -15,7 +15,7 @@ $grad2: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
 $font-text: "Montserrat", sans-serif;
 $font-heading: "Open Sans", sans-serif;
 
-$container-size: 1190px;
+$container-size: 1920px;
 
 $size-xxl: 2260px;
 $size-xl: 1440px;
