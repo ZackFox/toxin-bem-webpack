@@ -64,6 +64,16 @@
   border-radius: 25px;
 }
 
+.iqdropdown .iqdropdown-item-controls button.button-decrement,
+.iqdropdown .iqdropdown-item-controls button.button-increment {
+  border-radius: 25px;
+}
+
+.iqdropdown .iqdropdown-item-controls button.button-decrement:disabled,
+.iqdropdown .iqdropdown-item-controls button.button-increment:disabled {
+  opacity: 0.38;
+}
+
 .iqdropdown .icon-decrement {
   height: 12px;
   min-width: 0;

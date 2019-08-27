@@ -6,11 +6,11 @@ mixin quantityDropdown(options)
         - var min = item.min ? item.min : 0;
         - var max = item.max ? item.max : Infinity;
         - var value = item.value ? item.value : 0;
-        <div class="iqdropdown-menu-option" data-id="#{item.id}" data-mincount="#{min}" data-maxcount="#{max}">
+        <div class="iqdropdown-menu-option" data-id="#{item.id}" data-mincount="#{min}" data-maxcount="#{max}" data-value="#{value}" >
           <div class="iqdropdown-content">
             <h3 class="iqdropdown-item">#{item.label}</h3>          
           </div>
-          <span class="iqdropdown-counter">#{value}</span>          
-        </div>  
-    </div>
+          <span class="counter">#{value}</span>          
+        </div>
+    </div>   
   </div>
