@@ -4,9 +4,14 @@
     maxItems: Infinity,
     selectionText: "How many item",
     plurals: ["item", "items"],
-    controls: false,
-    items: {},
+    buttons: {
+      visible: false,
+      resetButton: "reset",
+      applyButton: "apply",
+    },
     onChange: undefined,
+    onReset: () => {},
+    onApply: () => {},
     beforeDecrement: () => true,
     beforeIncrement: () => true,
   };
@@ -18,7 +23,8 @@
       const $menu = $this.find("div.iqdropdown-menu");
       const $items = $menu.find("div.iqdropdown-menu-option");
       const settings = $.extend(true, {}, defaults, options);
-      const itemCount = {};
+      settings.limits = {};
+      const itemState = {};
       let totalItems = 0;
 
       function updateSelectionText() {
@@ -28,11 +34,11 @@
         } else if (onChange === undefined) {
           $selection.text(`${totalItems} ${totalItems == 1 ? plurals[0] : plurals[1]}`);
         } else {
-          $selection.text(onChange(itemCount, totalItems, plurals));
+          $selection.text(onChange(itemState, totalItems, plurals));
         }
       }
 
-      function setItemSettings(id, $item) {
+      function setItemState(id, $item) {
         const min = Number($item.data("mincount"));
         const max = Number($item.data("maxcount"));
         const counter = Number($item.find(".counter").text());
@@ -41,27 +47,25 @@
         const maxCount = Number.isNaN(max) ? Infinity : max;
         const value = !Number.isNaN(counter) && counter >= minCount ? counter : minCount;
 
-        settings.items[id] = { minCount, maxCount, value };
-        itemCount[id] = value;
-        totalItems += itemCount[id];
+        settings.limits[id] = { minCount, maxCount, value };
+        itemState[id] = value;
+        totalItems += itemState[id];
       }
 
       function addControls(id, $item) {
-        const $counter = $item.find(".counter");
-        $counter.text(itemCount[id]).wrap(`<div class="iqdropdown-item-controls">`);
-
+        const $counter = $item
+          .find(".counter")
+          .wrap(`<div class="iqdropdown-item-controls">`);
         const $controls = $counter.parent();
 
         const $hiddenInput = $(`
-          <input type="hidden" name="${id}" value="${itemCount[id]}">            
+          <input type="hidden" name="${id}" value="${itemState[id]}">            
         `);
-
         const $decrementButton = $(`
           <button class="button-decrement">
             <i class="icon-decrement"></i>
           </button>
         `);
-
         const $incrementButton = $(`
           <button class="button-increment">
             <i class="icon-decrement icon-increment"></i>
@@ -72,70 +76,112 @@
         $controls.prepend($decrementButton);
         $controls.append($incrementButton);
 
-        const disableButtons = () => {
-          $decrementButton.attr(
-            "disabled",
-            itemCount[id] === settings.items[id].minCount,
-          );
-          $incrementButton.attr(
-            "disabled",
-            itemCount[id] === settings.items[id].maxCount,
-          );
-        };
-
         $decrementButton.click(event => {
           event.preventDefault();
+          const { limits, minItems, beforeDecrement } = settings;
+          const allowClick = beforeDecrement(id, itemState);
 
-          const { items, minItems, beforeDecrement } = settings;
-          const allowClick = beforeDecrement(id, itemCount);
-          const targetOption = event.currentTarget.closest(".iqdropdown-menu-option");
-
-          if (allowClick && totalItems > minItems && itemCount[id] > items[id].minCount) {
-            itemCount[id] -= 1;
+          if (
+            allowClick &&
+            totalItems > minItems &&
+            itemState[id] > limits[id].minCount
+          ) {
+            itemState[id] -= 1;
             totalItems -= 1;
-            $counter.html(itemCount[id]);
-            $hiddenInput.val(itemCount[id]);
-            targetOption.dataset.value = itemCount[id];
-
+            updateItemLayout(id, $item);
             updateSelectionText();
           }
-
-          disableButtons();
+          updateDisabled(id, $decrementButton, $incrementButton);
         });
 
         $incrementButton.click(event => {
           event.preventDefault();
+          const { limits, maxItems, beforeIncrement } = settings;
+          const allowClick = beforeIncrement(id, itemState);
 
-          const { items, maxItems, beforeIncrement } = settings;
-          const allowClick = beforeIncrement(id, itemCount);
-          const targetOption = event.currentTarget.closest(".iqdropdown-menu-option");
-          console.log(event.currentTarget);
-          if (allowClick && totalItems < maxItems && itemCount[id] < items[id].maxCount) {
-            itemCount[id] += 1;
+          if (
+            allowClick &&
+            totalItems < maxItems &&
+            itemState[id] < limits[id].maxCount
+          ) {
+            itemState[id] += 1;
             totalItems += 1;
-            $counter.html(itemCount[id]);
-            $hiddenInput.val(itemCount[id]);
-            targetOption.dataset.value = itemCount[id];
+            updateItemLayout(id, $item);
             updateSelectionText();
           }
-
-          disableButtons();
+          updateDisabled(id, $decrementButton, $incrementButton);
         });
 
-        disableButtons();
-        $item.click(event => event.stopPropagation());
+        updateDisabled(id, $decrementButton, $incrementButton);
+        $menu.click(event => event.stopPropagation());
         return $item;
+      }
+
+      function updateDisabled(id, decrBtn, incrBtn) {
+        decrBtn.attr("disabled", itemState[id] === settings.limits[id].minCount);
+        incrBtn.attr("disabled", itemState[id] === settings.limits[id].maxCount);
+      }
+
+      function updateItemLayout(id, item) {
+        item.attr("data-value", itemState[id]);
+        item
+          .children()
+          .eq(0)
+          .val(itemState[id]);
+        item
+          .children()
+          .eq(2)
+          .children()
+          .eq(1)
+          .html(itemState[id]);
+      }
+
+      function addMenuButtons() {
+        const {
+          limits,
+          buttons: { resetButton, applyButton },
+        } = settings;
+
+        const $container = $('<div class="iqdropdown-control-buttons" >');
+
+        const $buttonReset = $(
+          `<button class="iqdropdown-btn-reset">${resetButton}</button>`,
+        );
+        const $buttonApply = $(
+          `<button class="iqdropdown-btn-apply">${applyButton}</button>`,
+        );
+
+        $buttonReset.click(event => {
+          event.preventDefault();
+          totalItems = 0;
+
+          $items.each(function() {
+            const $item = $(this);
+            const id = $item.data("id");
+
+            itemState[id] = limits[id].minCount;
+            totalItems += limits[id].minCount;
+            updateItemLayout(id, $item);
+          });
+          updateSelectionText();
+        });
+
+        $container.append($buttonReset, $buttonApply);
+        $menu.append($container);
       }
 
       $this.click(() => {
         $this.toggleClass("menu-open");
       });
 
+      if (settings.buttons.visible) {
+        addMenuButtons();
+      }
+
       $items.each(function() {
         const $item = $(this);
         const id = $item.data("id");
-
-        setItemSettings(id, $item);
+        setItemState(id, $item);
         addControls(id, $item);
       });
 
