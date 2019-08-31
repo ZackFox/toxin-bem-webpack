@@ -1,6 +1,6 @@
-@import "fonts";
-@import "vars";
-@import "libs";
+@import "./common/fonts";
+@import "./common/vars";
+@import "./common/libs";
 
 html {
   font-size: 12px;
@@ -122,9 +122,3 @@ h3 {
 /* Custom, iPhone Retina */
 @media only screen and (max-width: 320px) {
 }
-
-@import "../blocks/header/header";
-@import "../blocks/footer/footer";
-@import "../blocks/button/button";
-@import "../blocks/bulletList/bulletList";
-@import "../blocks/quantityDropdown/quantityDropdown";
