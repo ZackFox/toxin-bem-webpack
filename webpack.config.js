@@ -8,11 +8,25 @@ const cssnano = require("cssnano");
 const path = require("path");
 
 const config = {
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+    uikit: "./src/uikit.js",
+  },
   output: {
-    filename: "js/bundle.js",
+    filename: "js/[name].bundle.js",
     path: path.join(__dirname, "/build"),
     publicPath: "/",
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          chunks: "initial",
+          name: "vendors",
+        },
+      },
+    },
   },
   devServer: {
     overlay: true,
@@ -129,20 +143,23 @@ const config = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "src/pages/index.pug",
-      inject: false,
+      inject: true,
+      chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
       filename: "ui-kit.html",
       template: "src/pages/ui-kit.pug",
-      inject: false,
+      inject: true,
+      chunks: ["vendors", "uikit"],
     }),
     new HtmlWebpackPlugin({
       filename: "home.html",
       template: "src/pages/home.pug",
-      inject: false,
+      inject: true,
+      chunks: ["vendors", "index"],
     }),
     new MiniCssExtractPlugin({
-      filename: "css/styles.css",
+      filename: "css/styles.[name].css",
     }),
     new Webpack.ProvidePlugin({
       $: "jquery",
