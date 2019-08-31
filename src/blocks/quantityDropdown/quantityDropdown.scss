@@ -25,9 +25,9 @@
 }
 
 .iqdropdown .iqdropdown-menu {
-  box-shadow: none;
   padding: 12px 0;
   border: 1px solid $m50;
+  box-shadow: 0px 10px 20px -2px $lite;
 }
 
 .iqdropdown-item {
@@ -59,48 +59,49 @@
   height: auto;
 }
 
-.iqdropdown .iqdropdown-item-controls button.button-decrement,
-.iqdropdown .iqdropdown-item-controls button.button-increment {
+.iqdropdown-item-controls .button-decrement,
+.iqdropdown-item-controls .button-increment {
   border-radius: 25px;
 }
 
-.iqdropdown .iqdropdown-item-controls button.button-decrement,
-.iqdropdown .iqdropdown-item-controls button.button-increment {
-  border-radius: 25px;
-}
-
-.iqdropdown .iqdropdown-item-controls button.button-decrement:disabled,
-.iqdropdown .iqdropdown-item-controls button.button-increment:disabled {
+.iqdropdown-item-controls .button-decrement:disabled,
+.iqdropdown-item-controls .button-increment:disabled {
   opacity: 0.38;
+  cursor: default;
+}
+
+.iqdropdown-item-controls .button-decrement:disabled:hover,
+.iqdropdown-item-controls .button-increment:disabled:hover {
+  background: transparent;
 }
 
 .iqdropdown .icon-decrement {
-  height: 12px;
+  height: 11px;
   min-width: 0;
-  width: 8px;
+  width: 6px;
 }
 
 .iqdropdown .icon-decrement.icon-increment {
-  height: 12px;
+  height: 10px;
   min-width: 0;
-  width: 12px;
+  width: 10px;
 }
 
 .iqdropdown .icon-decrement::after {
-  width: 8px;
-  height: 2px;
+  width: 6px;
+  height: 1px;
   background: $m25;
 }
 
 .iqdropdown .icon-increment::after {
-  width: 12px;
-  height: 2px;
+  width: 10px;
+  height: 1px;
   background: $m25;
 }
 
 .iqdropdown .icon-decrement.icon-increment::before {
-  width: 12px;
-  height: 2px;
+  width: 10px;
+  height: 1px;
   background: $m25;
 }
 
@@ -114,4 +115,46 @@
   padding: 0;
   border: none;
   text-align: center;
+}
+
+.iqdropdown-control-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.iqdropdown-btn-apply,
+.iqdropdown-btn-reset {
+  font-family: $font-text;
+  font-weight: 700;
+  color: $accent1;
+  text-transform: uppercase;
+}
+
+.iqdropdown-menu .iqdropdown-menu-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-top: 15px;
+}
+
+.iqdropdown-menu-buttons .iqdropdown-btn-apply,
+.iqdropdown-menu-buttons .iqdropdown-btn-reset {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  color: $m50;
+}
+
+.iqdropdown-menu-buttons .iqdropdown-btn-apply:hover,
+.iqdropdown-menu-buttons .iqdropdown-btn-apply:active,
+.iqdropdown-menu-buttons .iqdropdown-btn-reset:hover,
+.iqdropdown-menu-buttons .iqdropdown-btn-reset:active {
+  color: $accent1;
+}
+
+.iqdropdown-menu-buttons .iqdropdown-btn-apply {
+  margin-left: auto;
+}
+.iqdropdown-menu-buttons .iqdropdown-btn-reset:disabled {
+  display: none;
 }
