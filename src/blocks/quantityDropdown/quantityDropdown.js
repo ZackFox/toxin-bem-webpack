@@ -70,15 +70,26 @@
           .children()
           .eq(0)
           .val(itemState[id]);
+
         item
           .children()
           .eq(2)
           .children()
           .eq(1)
           .html(itemState[id]);
-      }
 
-      function updateControlsDisabled(id, decrBtn, incrBtn) {
+        const decrBtn = item
+          .children()
+          .eq(2)
+          .children()
+          .eq(0);
+
+        const incrBtn = item
+          .children()
+          .eq(2)
+          .children()
+          .eq(2);
+
         decrBtn.attr("disabled", itemState[id] === settings.limits[id].minCount);
         incrBtn.attr("disabled", itemState[id] === settings.limits[id].maxCount);
       }
@@ -123,9 +134,8 @@
           ) {
             itemState[id] -= 1;
             totalItems -= 1;
-            updateItemLayout(id, $item);
             updateSelectionText();
-            updateControlsDisabled(id, $decrementButton, $incrementButton);
+            updateItemLayout(id, $item);
 
             if (settings.buttons.visible) {
               updateResetDisabled($buttonReset);
@@ -145,9 +155,8 @@
           ) {
             itemState[id] += 1;
             totalItems += 1;
-            updateItemLayout(id, $item);
             updateSelectionText();
-            updateControlsDisabled(id, $decrementButton, $incrementButton);
+            updateItemLayout(id, $item);
 
             if (settings.buttons.visible) {
               updateResetDisabled($buttonReset);
@@ -155,13 +164,13 @@
           }
         });
 
-        updateControlsDisabled(id, $decrementButton, $incrementButton);
+        updateItemLayout(id, $item);
         $menu.click(event => event.stopPropagation());
         return $item;
       }
 
       function addMenuButtons() {
-        const $container = $('<div class="iqdropdown-control-buttons" >');
+        const $container = $('<div class="iqdropdown-menu-buttons" >');
 
         updateResetDisabled($buttonReset);
 
