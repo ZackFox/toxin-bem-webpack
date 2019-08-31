@@ -1,0 +1,28 @@
+extends ./layout.pug
+
+include ../blocks/quantityDropdown/quantityDropdown.pug
+
+block prepend head
+  -var title = "UI Kit"
+
+block body  
+  <div class="wrapper">    
+    <h2>ui-kit</h2>
+    
+    +quantityDropdown({
+      items: [
+        { id: "adults", label: "взрослые", value: 2 },
+        { id: "children", label: "дети", value: 1 },
+        { id: "babies", label: "младенцы", value: 33 }
+      ]
+    })(class="guests-dropdown")
+    
+    +quantityDropdown({
+      items: [
+        { id: "bedrooms", label: "спальни", min:1 },
+        { id: "beds", label: "кровати", min:1 },      
+        { id: "baths", label: "ванные комнаты", min:0 },      
+      ]
+    })(class="rooms-dropdown")
+
+  </div>
