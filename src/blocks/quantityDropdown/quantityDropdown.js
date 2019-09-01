@@ -18,7 +18,9 @@
 
   $.fn.iqDropdown = function(options) {
     this.each(function() {
-      const $this = $(this);
+      const $this = $(this)
+        .children()
+        .eq(1);
       const $selection = $this.find("p.iqdropdown-selection").last();
       const $menu = $this.find("div.iqdropdown-menu");
       const $items = $menu.find("div.iqdropdown-menu-option");

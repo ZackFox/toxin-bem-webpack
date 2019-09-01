@@ -1,5 +1,9 @@
 @import "../../node_modules/item-quantity-dropdown/lib/item-quantity-dropdown.min.css";
 
+.quantity-dropdown__label {
+  margin-bottom: 6px;
+}
+
 .iqdropdown {
   padding: 12px 90px 12px 15px;
   border: 1px solid $m25;
