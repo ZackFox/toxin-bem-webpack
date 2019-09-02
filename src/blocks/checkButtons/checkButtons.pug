@@ -1,0 +1,17 @@
+include ../checkbox/checkbox.pug
+
+mixin checkButtons(options)
+  <div class="check-buttons #{attributes.class}">
+    <h3 class="check-buttons__title">#{options.label}</h3>
+    <ul class="check-buttons__list">
+      each item in options.items        
+        <li class="check-buttons__item">
+          +checkbox(item.id, item.checked)(class="check-buttons__checkbox")
+          if options.richMode
+            <h3>#{item.title}</h3>
+            <p class="check-buttons__text">#{item.text}</p>
+          else 
+            <span>#{item.title}</span>  
+        </li>
+    </ul>
+  </div>

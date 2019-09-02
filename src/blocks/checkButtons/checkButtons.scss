@@ -1,0 +1,29 @@
+@import "../checkbox/checkbox";
+
+.check-buttons__title {
+  margin-bottom: 15px;
+}
+
+.check-buttons__list {
+  padding-left: 30px;
+}
+
+.check-buttons__item {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.check-buttons__item h3 {
+  line-height: 24px;
+}
+
+.check-buttons__checkbox {
+  position: absolute;
+  top: 2px;
+  left: -30px;
+}
+
+.check-buttons__text {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
