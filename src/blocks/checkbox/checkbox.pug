@@ -1,0 +1,5 @@
+mixin checkbox(id, checked)  
+  - var isChecked = checked ? "checked" : ""
+  
+  <input type="checkbox" class="checkbox__dummy" id="#{id}" name="#{id}" #{isChecked}>
+  <label  for="#{id}" class="checkbox #{attributes.class}" ></label>
