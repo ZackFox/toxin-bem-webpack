@@ -1,7 +1,8 @@
-mixin bulletList(items)
-  <div class="bullet-list">
+mixin bulletList(options)
+  <div class="bullet-list #{attributes.class}">
+    <h3>#{options.label}</h3>
     <ul>
-      each item in items 
+      each item in options.items 
         <li class="bullet-list__item">#{item}</li>
     </ul>
   </div>
