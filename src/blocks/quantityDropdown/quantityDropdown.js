@@ -21,7 +21,7 @@
       const $this = $(this)
         .children()
         .eq(1);
-      const $selection = $this.find("p.iqdropdown-selection").last();
+      const $selection = $this.find(".iqdropdown-selection p");
       const $menu = $this.find("div.iqdropdown-menu");
       const $items = $menu.find("div.iqdropdown-menu-option");
       const settings = $.extend(true, {}, defaults, options);
