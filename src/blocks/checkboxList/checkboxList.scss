@@ -1,0 +1,48 @@
+@import "../checkbox/checkbox";
+
+.checkbox-list__title {
+  padding: 10px 50px 10px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-list__title .checkbox-list-expand {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -7px;
+  font-size: 14px;
+  transition: transform 0.2s;
+  
+}
+
+.checkbox-list__title_open .checkbox-list-expand {
+  transform: rotate(-180deg);
+}
+
+.checkbox-list__menu {
+  padding-left: 30px;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.5s;
+}
+
+.checkbox-list__menu_expanded {
+  height: 300px;
+}
+
+.checkbox-list__item {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.checkbox-list .checkbox-list__checkbox {
+  position: absolute;
+  top: 2px;
+  left: -30px;
+}
+
+.checkbox-list .checkbox-list__text {
+  margin-top: 0px;
+  margin-bottom: 0;
+}

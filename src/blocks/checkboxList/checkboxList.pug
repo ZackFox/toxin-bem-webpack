@@ -1,0 +1,17 @@
+include ../checkbox/checkbox.pug
+include ../icon/icon.pug
+
+mixin checkboxList(options)
+  <div class="checkbox-list #{attributes.class}">
+    <div class="checkbox-list__title">
+      <h3 >#{options.label}</h3>
+      +icon("icon-expand_more")(class="checkbox-list-expand")
+    </div>
+    <ul class="checkbox-list__menu" >
+      each item in options.items        
+        <li class="checkbox-list__item">
+          +checkbox(item.id, item.checked)(class="checkbox-list__checkbox")          
+          <span>#{item.title}</span>  
+        </li>
+    </ul>
+  </div>
