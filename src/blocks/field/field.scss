@@ -1,0 +1,23 @@
+.field {
+  position: relative;
+}
+
+.field__title {
+  margin-bottom: 5px;
+}
+
+.field__input {
+  width: 100%;
+  font-family: $font-text;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 10px 14px;
+  border: 1px solid $m25;
+  border-radius: 4px;
+  color: $m75;
+}
+
+.field__input:focus {
+  border-color: $m50;
+  outline: none;
+}
