@@ -13,7 +13,6 @@
   margin-top: -7px;
   font-size: 14px;
   transition: transform 0.2s;
-  
 }
 
 .checkbox-list__title_open .checkbox-list-expand {
@@ -21,7 +20,7 @@
 }
 
 .checkbox-list__menu {
-  padding-left: 30px;
+  padding-left: 0px;
   overflow: hidden;
   height: 0;
   transition: height 0.5s;

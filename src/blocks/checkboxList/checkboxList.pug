@@ -1,5 +1,5 @@
-include ../checkbox/checkbox.pug
 include ../icon/icon.pug
+include ../checkbox/checkbox.pug
 
 mixin checkboxList(options)
   <div class="checkbox-list #{attributes.class}">
@@ -10,8 +10,7 @@ mixin checkboxList(options)
     <ul class="checkbox-list__menu" >
       each item in options.items        
         <li class="checkbox-list__item">
-          +checkbox(item.id, item.checked)(class="checkbox-list__checkbox")          
-          <span>#{item.title}</span>  
+          +checkbox(item)(class="")
         </li>
     </ul>
   </div>
