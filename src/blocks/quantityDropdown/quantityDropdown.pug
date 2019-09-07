@@ -1,25 +1,22 @@
 include ../icon/icon.pug
 
 mixin quantityDropdown(options)
-  <div class="quantity-dropdown #{attributes.class}">
-    <h3 class="quantity-dropdown__label">#{options.label}</h3>    
-    <div class="iqdropdown" >
-      <div class="iqdropdown-selection">
-        <p class="selection-text"></p>
-        +icon("icon-expand_more")(class="dropdown-menu-expand")
-      </div>
-      <div class="iqdropdown-menu">
-        each item in options.items
-          - var min = item.min ? item.min : 0;
-          - var max = item.max ? item.max : Infinity;
-          - var value = item.value ? item.value : 0;
-          
-          <div class="iqdropdown-menu-option" data-id="#{item.id}" data-mincount="#{min}" data-maxcount="#{max}" data-value="#{value}" >
-            <div class="iqdropdown-content">
-              <h3 class="iqdropdown-item">#{item.label}</h3>          
-            </div>
-            <span class="counter">#{value}</span>          
-          </div>
-      </div>   
+  <div class="iqdropdown #{attributes.class}">
+    <div class="iqdropdown-selection">
+      <p class="selection-text"></p>
+      +icon("icon-expand_more")(class="dropdown-menu-expand")
     </div>
+    <div class="iqdropdown-menu">
+      each item in options.items
+        - var min = item.min ? item.min : 0;
+        - var max = item.max ? item.max : Infinity;
+        - var value = item.value ? item.value : 0;
+        
+        <div class="iqdropdown-menu-option" data-id="#{item.id}" data-mincount="#{min}" data-maxcount="#{max}" data-value="#{value}" >
+          <div class="iqdropdown-content">
+            <h3 class="iqdropdown-item">#{item.label}</h3>          
+          </div>
+          <span class="counter">#{value}</span>          
+        </div>
+    </div>   
   </div>
