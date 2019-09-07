@@ -1,0 +1,11 @@
+include ../radio/radio.pug
+
+mixin radioGroup(options)
+  <div class="radio-group #{attributes.class}">
+    <ul >
+      each item in options.items        
+        <li class="radio-group__item">
+          +radio(options.name, item)
+        </li>
+    </ul>
+  </div>

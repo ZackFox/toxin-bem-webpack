@@ -1,0 +1,14 @@
+@import "../radio/radio";
+
+.radio-group ul {
+  padding-left: 0;
+}
+
+.radio-group__item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.radio-group__item:last-child {
+  margin-right: 0px;
+}
