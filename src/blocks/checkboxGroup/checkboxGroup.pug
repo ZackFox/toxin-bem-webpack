@@ -1,0 +1,14 @@
+include ../checkbox/checkbox.pug
+
+mixin checkboxGroup(options)
+  <div class="checkbox-group #{attributes.class}">
+    <ul class="checkbox-group__list">
+      each item in options.items        
+        - const isRich = options.richMode ? "checkbox_rich" : "";
+        <li class="checkbox-group__item">
+          +checkbox(item)(class=`${isRich}`)      
+          if options.richMode
+            <p class="checkbox-group__description">#{item.desc}</p>          
+        </li>
+    </ul>
+  </div>

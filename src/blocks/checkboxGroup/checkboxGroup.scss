@@ -1,0 +1,31 @@
+@import "../checkbox/checkbox";
+
+.checkbox-group__title {
+  margin-bottom: 15px;
+}
+
+.checkbox-group__list {
+  padding-left: 0px;
+}
+
+.checkbox-group__item {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.checkbox-group__box {
+  position: absolute;
+  top: 2px;
+  left: -30px;
+}
+
+.checkbox-group__item-text {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+.checkbox-group__description {
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding-left: 33px;
+}
