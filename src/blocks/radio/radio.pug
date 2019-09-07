@@ -1,0 +1,8 @@
+mixin radio(name, item)  
+  - const isChecked = item.checked ? "checked" : "";
+  
+  <label class="radio #{attributes.class}" for="#{item.value}" >
+    <input class="radio__control" type="radio" #{isChecked} name="#{name}" id="#{item.value}" value="#{item.value}">
+    <span class="radio__box"></span>
+    <span class="radio__text" role="presentation" >#{item.text}</span>
+  </label>
