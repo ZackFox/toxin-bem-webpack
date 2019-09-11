@@ -1,0 +1,147 @@
+extends ../layout.pug
+
+include ../../blocks/button/button.pug
+include ../../blocks/field/field.pug
+include ../../blocks/bulletList/bulletList.pug
+include ../../blocks/quantityDropdown/quantityDropdown.pug
+include ../../blocks/radioGroup/radioGroup.pug
+include ../../blocks/checkboxGroup/checkboxGroup.pug
+include ../../blocks/checkboxList/checkboxList.pug
+include ../../blocks/toggle/toggle.pug
+
+block prepend head
+  -var title = "UI Kit"
+
+block body
+  <h2>ui-kit</h2>
+  
+  <div class="wrapper">      
+    <section class="section ui-items-container">
+      <div class="ui-item">
+        <h3 class="ui-item__title">toggle</h3>
+        +toggleButton({
+          name:"special",
+          text: "Получать спецпредложение",
+          checked: true,
+        })
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">radio buttons</h3>
+        +radioGroup({
+          name: "gender",
+          items:[
+            { value:"male", text: "Мужчина",  checked: true },
+            { value: "female", text: "Женщина" }
+          ]
+        })
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">text field</h3>
+        +field({
+          type: "email",
+          id: "email",
+          placeholder: "Email"
+        })
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">удобства номера</h3>
+        +quantityDropdown({
+          items: [
+            { id: "bedrooms", label: "спальни", min: 1 },
+            { id: "beds", label: "кровати", min: 1 },      
+            { id: "baths", label: "ванные комнаты", min: 0 },   
+          ]
+        })(class="rooms-dropdown")      
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">гости</h3>
+        +quantityDropdown({
+          items: [
+            { id: "adults", label: "взрослые", value: 2 },
+            { id: "children", label: "дети", value: 1 },
+            { id: "babies", label: "младенцы", value: 33 }
+          ]
+        })(class="guests-dropdown")  
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title" >bullet list</h3>
+        +bulletList({
+          items: [
+          "Нельзя с питомцами",
+          "без вечеринок и мероприятий",
+          "Время прибытия — после 13:00, а выезд до 12:00"
+        ]})        
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">checkbox buttons</h3>
+        +checkboxGroup({
+          items: [
+            { 
+              name: "allowSmoke", 
+              checked: true, 
+              text: "Можно курить", 
+            },
+            { 
+              name: "allowPets", 
+              text: "Можно с питомцами"
+            },
+            { 
+              name: "allowGuests", 
+              text: "Можно пригласить гостей (до 10 человек)"
+            }
+          ]
+        })
+      </div>
+      <div class="ui-item">
+        <h3 class="ui-item__title">rich checkbox buttons</h3>
+        +checkboxGroup({          
+          richMode: true,
+          items: [
+            { 
+              name: "wide", 
+              checked: true, 
+              text: "Широкий коридор", 
+              desc:"Ширина коридоров в номере не менее 91 см."
+            },
+            { 
+              name: "helper", 
+              text: "Помошник для инвалидов",
+              desc: "На 1 этаже встретит специалист и проведет до номера"
+            },          
+          ]
+        })
+      </div>
+      <div class="ui-item">
+        +checkboxList({
+            label: "expandable checkbox list",
+            items: [
+              { 
+                name: "breakfast", 
+                checked: true, 
+                text: "Завтрак", 
+              },  
+              { 
+                name: "desk", 
+                text: "Письменный стол",
+              },          
+              { 
+                name: "feedingTable", 
+                text: "Стол для кормления",
+              },          
+              { 
+                name: "crib", 
+                text: "кроватка",
+              },
+              { 
+                name: "tv", 
+                text: "телевизор",
+              },                    
+            ]
+          })
+      </div>
+    </section>
+    <section class="section ui-items-container">
+      
+      
+    </section>
+  </div>

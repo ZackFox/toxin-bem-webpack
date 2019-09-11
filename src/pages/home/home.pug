@@ -1,0 +1,25 @@
+extends ../layout.pug
+
+include ../../blocks/header/header.pug
+include ../../blocks/footer/footer.pug
+include ../../blocks/button/button.pug
+include ../../blocks/bulletList/bulletList.pug
+
+block prepend head
+  -var title = "Home"
+
+block body
+  +header([
+    { title: "О нас", active: false, children: [] }, 
+    { title: "услуги", active: false, children: [] },
+    { title:"вакансии", active: false, children: [] }, 
+    { title: "новости", active: false, children: [] }, 
+    { title: "соглашения", active: false, children: [] }
+  ])
+    
+  <section class="hero">
+    <div class="wrapper">    
+      
+    </div>
+  </section>
+  +footer()

@@ -1,0 +1,26 @@
+@import "../../scss/main.scss";
+
+@import "../../blocks/header/header";
+@import "../../blocks/footer/footer";
+@import "../../blocks/button/button";
+@import "../../blocks/field/field";
+@import "../../blocks/bulletList/bulletList";
+@import "../../blocks/quantityDropdown/quantityDropdown";
+@import "../../blocks/checkboxList/checkboxList";
+@import "../../blocks/checkboxGroup/checkboxGroup";
+@import "../../blocks/radioGroup/radioGroup";
+@import "../../blocks/toggle/toggle";
+
+.ui-items-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-item {
+  max-width: 300px;
+  margin-bottom: 50px;
+}
+
+.ui-item__title {
+  margin-bottom: 10px;
+}

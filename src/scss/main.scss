@@ -114,11 +114,13 @@ h3 {
 }
 
 @media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 478px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
-}
-
-/* Custom, iPhone Retina */
-@media only screen and (max-width: 320px) {
+  .wrapper {
+    width: 320px;
+  }
 }

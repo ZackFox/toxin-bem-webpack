@@ -9,8 +9,9 @@ const path = require("path");
 
 const config = {
   entry: {
-    index: "./src/index.js",
-    uikit: "./src/uikit.js",
+    index: "./src/pages/index/index.js",
+    home: "./src/pages/home/home.js",
+    uikit: "./src/pages/uikit/uikit.js",
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -22,8 +23,8 @@ const config = {
       chunks: "all",
       cacheGroups: {
         vendor: {
-          chunks: "initial",
-          name: "vendors",
+          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
         },
       },
     },
@@ -91,6 +92,7 @@ const config = {
       },
       {
         test: /\.(gif|png|jpe?g|svg|ico)$/i,
+        include: [path.resolve(__dirname, "src/blocks")],
         exclude: [path.resolve(__dirname, "src/fonts")],
         use: [
           {
@@ -142,21 +144,21 @@ const config = {
     ]),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/pages/index.pug",
+      template: "src/pages/index/index.pug",
       inject: true,
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
       filename: "ui-kit.html",
-      template: "src/pages/ui-kit.pug",
+      template: "src/pages/uikit/uikit.pug",
       inject: true,
-      chunks: ["vendors", "uikit"],
+      chunks: ["vendor", "uikit"],
     }),
     new HtmlWebpackPlugin({
       filename: "home.html",
-      template: "src/pages/home.pug",
+      template: "src/pages/home/home.pug",
       inject: true,
-      chunks: ["vendors", "index"],
+      chunks: ["vendor", "home"],
     }),
     new MiniCssExtractPlugin({
       filename: "css/styles.[name].css",
