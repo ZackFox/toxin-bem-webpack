@@ -1,0 +1,50 @@
+.toggle-button {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button__control {
+  display: none;
+}
+
+.toggle-button__box {
+  display: block;
+  width: 40px;
+  height: 20px;
+  border: 1px solid $m25;
+  position: relative;
+  border-radius: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.toggle-button__circle {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: $m25;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  transition: left 0.3s;
+  border-radius: 20px;
+}
+
+.toggle-button__control:checked ~ .toggle-button__box {
+  border-color: $accent1;
+}
+
+.toggle-button__control:checked ~ .toggle-button__box .toggle-button__circle {
+  background: $accent1;
+  left: 22px;
+}
+
+.toggle-button_text_left {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.toggle-button_text_left .toggle-button__box {
+  margin-right: 0;
+  margin-left: 10px;
+}

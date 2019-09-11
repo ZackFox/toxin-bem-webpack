@@ -1,0 +1,10 @@
+mixin toggleButton(options)  
+  - const isChecked = options.checked ? "checked" : "";  
+  
+  <div  class="toggle-button #{attributes.class}" >
+    <input type="checkbox" class="toggle-button__control" #{isChecked} id="#{options.name}" name="#{options.name}" value="true" >  
+    <label for="#{options.name}" class="toggle-button__box">
+      <span class="toggle-button__circle"></span>
+    </label>
+    <span class="radio__text" role="presentation" >#{options.text}</span>
+  </div>
