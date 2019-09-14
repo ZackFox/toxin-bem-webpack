@@ -1,0 +1,15 @@
+include ../icon/icon.pug
+
+mixin rating(options)
+  - let rate = !options.value ? 1 : options.value > 5 ? 5 : options.value ;  
+  - const isDisabled = !options.active ? "disabled": "";
+  - const isChecked = (val) => rate === val ? "checked": "";
+
+  <div class="rating #{attributes.class}" >        
+    each i in [1,2,3,4,5]      
+      <input type="radio" class="rating__control" #{isDisabled} #{isChecked(i)} id="#{options.name}_rate_#{i}" name="#{options.name}"  value="#{i}" >  
+      <label for="#{options.name}_rate_#{i}"  class="rating__star">
+        +icon("icon-star")
+        +icon("icon-star_border")
+      </label>
+  </div>

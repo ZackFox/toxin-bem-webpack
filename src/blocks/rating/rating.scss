@@ -1,0 +1,41 @@
+.rating {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.rating__control {
+  display: none;
+}
+
+.rating__star {
+  display: block;
+  cursor: pointer;
+}
+
+.rating__star {
+  cursor: pointer;
+  .icon {
+    color: $accent1;
+  }
+  .icon-star {
+    display: none;
+  }
+}
+
+.rating__control:not([disabled]) ~ .rating__star:hover .icon-star,
+.rating__control:not([disabled]) ~ .rating__star:hover ~ .rating__star .icon-star,
+.rating__control:checked ~ .rating__star .icon-star {
+  display: inline;
+}
+
+.rating__control:not([disabled]) ~ .rating__star:hover .icon-star_border,
+.rating__control:not([disabled]) ~ .rating__star:hover ~ .rating__star .icon-star_border,
+.rating__control:checked ~ .rating__star .icon-star_border {
+  display: none;
+}
+
+// .rating__control:not([disabled]) ~ .rating__star:hover {
+//   background: red;
+// }
